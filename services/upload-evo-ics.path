@@ -1,0 +1,11 @@
+# NOTE: requires cargo, memoparsa and the specific Dropbox location, which
+# are not implemented in my kernel image by default
+[Unit]
+Description=Monitor alpha_self for changes.
+
+[Path]
+PathModified=/home/hegza/Dropbox/organizing/scheduling/alpha_self.md
+Unit=upload-evo-ics.service
+
+[Install]
+WantedBy=multi-user.target
