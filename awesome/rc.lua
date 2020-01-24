@@ -602,7 +602,11 @@ awful.rules.rules = {
       properties = { tag = "T-toggle", minimized = true }
     },
 	-- Prevent some applications from doing stupid shit
-	{ rule_any = { class = { "chromium", "firefox", "Firefox", "Telegram", "urxvt" } }, properties = {opacity = 1, maximized = false, floating = false} },
+	{ rule = { class = "chromium" }, properties = {opacity = 1, maximized = false, floating = false} },
+	{ rule = { class = "firefox" }, properties = {opacity = 1, maximized = false, floating = false} },
+	{ rule = { class = "Firefox" }, properties = {opacity = 1, maximized = false, floating = false} },
+	{ rule = { class = "Telegram" }, properties = {opacity = 1, maximized = false, floating = false} },
+	{ rule = { class = "urxvt" }, properties = {opacity = 1, maximized = false, floating = false} },
 }
 -- }}}
 
