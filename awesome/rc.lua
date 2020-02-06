@@ -124,13 +124,13 @@ do
         layout = {
             lmax,
             tile,
-            tile,       lmax,       lmax,   lmax,
+            tile,       lmax,       lmax,   lmax,       lmax,
             tile,       lmax,       lmax,
             lmax,       lmax,   lmax },
         wibox_id = {
             "bottom",
             "top_2_r",
-            "top_1",    "top_1",    "top_1",    "top_1",
+            "top_1",    "top_1",    "top_1", "top_1",   "top_1",
             "top_2",    "top_2",    "top_2",
             "bottom",   "bottom",   "bottom" },
         bg = beautiful.wallpaper_space
