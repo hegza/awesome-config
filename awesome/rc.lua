@@ -23,7 +23,7 @@ require("awful.hotkeys_popup.keys")
 local debug = false
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+terminal = "alacritty"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
