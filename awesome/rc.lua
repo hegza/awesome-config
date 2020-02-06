@@ -118,9 +118,9 @@ do
         names = {
             "A",
             "T",
-            "1",        "2",        "3",    "4-www",
+            "1",        "2",        "3",    "4-www",    "5-www",
             "Q",        "W",        "E",
-                        "S",       "D",    "G-stash" },
+                        "S",        "D",    "G-stash" },
         layout = {
             lmax,
             tile,
@@ -502,9 +502,9 @@ bind_default_keys("d", s, tag_by_name["D"], tags.bg)
 bind_default_keys("#" .. "1" + 9, s, tag_by_name["1"], tags.bg)
 bind_default_keys("#" .. "2" + 9, s, tag_by_name["2"], tags.bg)
 bind_default_keys("#" .. "3" + 9, s, tag_by_name["3"], tags.bg)
--- Bind 4-www
+-- Bind 4-www & 5-www
 bind_default_keys("#" .. "4" + 9, s, tag_by_name["4-www"], tags.bg)
-bind_default_keys("#" .. "5" + 9, s, tag_by_name["4-www"], tags.bg)
+bind_default_keys("#" .. "5" + 9, s, tag_by_name["5-www"], tags.bg)
 -- Bind T
 bind_default_keys("t", s, tag_by_name["T"], tags.bg)
 -- Bind G-stash
