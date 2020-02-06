@@ -117,7 +117,7 @@ do
         -- layouts in top-bar have to come first in indices (depends on hotkey-stuff)
         names = {
             "A",
-            "T-toggle",
+            "T",
             "1",        "2",        "3",    "4-www",
             "Q",        "W",        "E",
                         "S",       "D",    "G-stash" },
@@ -448,8 +448,6 @@ clientkeys = awful.util.table.join(
 
 -- Create table of tags by name
 tag_by_name = {}
--- A table of tags that get auto toggled on default 'viewonly' key behavior
-toggle_tags = {}
 
 --- {{{ Bind tag-keys
 function bind_default_keys(key, screen, tag, background)
@@ -461,12 +459,6 @@ function bind_default_keys(key, screen, tag, background)
                             local tags = {}
                             -- Add the activated tag
                             table.insert(tags, tag)
-                            -- Add all toggles that are on
-                            for toggle, on in pairs(toggle_tags) do
-                                if on then
-                                    table.insert(tags, toggle)
-                                end
-                            end
                             awful.tag.viewmore(tags)
                         end
                   end),
@@ -494,52 +486,6 @@ function bind_default_keys(key, screen, tag, background)
                       end
                   end))
 end
-function bind_toggle_keys(key, screen, tag, background)
-    globalkeys = awful.util.table.join(globalkeys,
-        -- Bind toggle action to (modkey + key)
-        awful.key({ modkey }, key,
-                  function ()
-                        local screen = mouse.screen
-                        if tag then
-                            -- HACK: save toggle state to the workaround until the callback has run
-                            local on = toggle_tags[tag]
-                            toggle_tags[tag] = true
-                            awful.tag.viewonly(tag)
-                            -- Restore original status
-                            toggle_tags[tag] = on
-                        end
-                  end),
-        -- Bind tag swap to (modkey + ctrl + key)
-        awful.key({ modkey, "Control" }, key,
-                  function ()
-                        local screen = mouse.screen
-                        if tag then
-                            -- Save toggle state to the workaround
-                            local on = toggle_tags[tag]
-                            toggle_tags[tag] = not on
-                            -- Activate
-                            awful.tag.viewtoggle(tag)
-                        end
-                  end),
-        awful.key({ modkey, "Shift" }, key,
-                  function ()
-                      if client.focus then
-                          if tag then
-                              awful.client.movetotag(tag)
-                          end
-                     end
-                  end),
-        awful.key({ modkey, "Control", "Shift" }, key,
-                  function ()
-                      if client.focus then
-                          if tag then
-                              awful.client.toggletag(tag)
-                          end
-                      end
-                  end))
-    -- Add the tag to the toggle-tag list for hack add
-    toggle_tags[tag] = false
-end
 for s = 1, screen.count() do
     for idx, tag in pairs(awful.tag.gettags(s)) do
         tag_by_name[tag.name] = tag
@@ -559,8 +505,8 @@ bind_default_keys("#" .. "3" + 9, s, tag_by_name["3"], tags.bg)
 -- Bind 4-www
 bind_default_keys("#" .. "4" + 9, s, tag_by_name["4-www"], tags.bg)
 bind_default_keys("#" .. "5" + 9, s, tag_by_name["4-www"], tags.bg)
--- Bind T-toggle
-bind_toggle_keys("t", s, tag_by_name["T-toggle"], tags.bg)
+-- Bind T
+bind_default_keys("t", s, tag_by_name["T"], tags.bg)
 -- Bind G-stash
 bind_default_keys("g", s, tag_by_name["G-stash"], tags.bg)
 
@@ -595,11 +541,11 @@ awful.rules.rules = {
     },
     -- Put evo on T-toggle
     { rule = { name = "evo" },
-      properties = { tag = "T-toggle" }
+      properties = { tag = "T" }
     },
     -- Put saskia-irc on T-toggle, as minimized
     { rule = { name = "saskia-irc" },
-      properties = { tag = "T-toggle", minimized = true }
+      properties = { tag = "T", minimized = true }
     },
 	-- Prevent some applications from doing stupid shit
 	{ rule = { class = "chromium" }, properties = {opacity = 1, maximized = false, floating = false} },
@@ -679,15 +625,6 @@ client.connect_signal("manage", function (c, startup)
 
         awful.titlebar(c):set_widget(layout)
     end
-    
-    -- Toggle the new client out of all toggle-tags where it is visible, unless the toggle tag is explicitly the only selected tag
-    if #awful.tag.selectedlist() ~= 1 then
-        for tag, on in pairs(toggle_tags) do
-            if on then
-                c:toggle_tag(tag)
-            end
-        end
-    end
 end)
 
 -- Don't let new clients be urgent by default
@@ -711,25 +648,11 @@ awful.screen.connect_for_each_screen(function(s)
                              title = "tag state changed",
                              text = tag.name .. " -> " .. tostring(tag.selected)})
         end
-
-        -- If any effect tries to activate the T-toggle, enable it
-        --[[
-        for toggle, on in pairs(toggle_tags) do
-            if toggle.name == tag.name then
-                toggle_tags[toggle] = true
-            end
-        end
-        --]]
-
-        -- Set toggle states based on the workaround
-        for toggle, on in pairs(toggle_tags) do
-            toggle.selected = on
-        end
     end)
 end)
 -- }}}
 
 -- Set the "1" tag as the startup tag
 awful.tag.viewonly(tag_by_name["1"])
-tag_by_name["T-toggle"].master_width_factor = 0.7
+tag_by_name["T"].master_width_factor = 0.7
 
