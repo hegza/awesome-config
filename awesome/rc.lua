@@ -132,16 +132,20 @@ client.connect_signal("request::activate", awful.ewmh.activate)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
--- Do things when a tag gets selected or deselected
-awful.screen.connect_for_each_screen(function(s)
-    awful.tag.attached_connect_signal(s, "property::selected", function(tag)
-        if debug then
-            naughty.notify({ preset = naughty.config.presets.info,
-                             title = "tag state changed",
-                             text = tag.name .. " -> " .. tostring(tag.selected)})
-        end
-    end)
-end)
+awful.screen.connect_for_each_screen(
+    function(s)
+        -- Do things when a tag gets selected or deselected
+        awful.tag.attached_connect_signal(s, "property::selected",
+            function(tag)
+                if debug then
+                    naughty.notify({ preset = naughty.config.presets.info,
+                                     title = "tag state changed",
+                                     text = tag.name .. " -> " .. tostring(tag.selected)})
+                end
+            end
+        )
+    end
+)
 -- }}}
 
 -- Set the "1" tag as the startup tag
