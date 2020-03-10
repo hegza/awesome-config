@@ -1,5 +1,6 @@
 local awful = require("awful")
 
+local layouts = require("layouts")
 local tags = require("tags")
 
 -- Create table of tags by name
@@ -58,8 +59,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "x",     function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey,           }, "z",     function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey,           }, "x",     function () awful.layout.inc(layouts,  1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
