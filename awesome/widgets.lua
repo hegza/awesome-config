@@ -152,17 +152,17 @@ for s = 1, screen.count() do
     bottom_wibox[s] = awful.wibar({ position = "bottom", screen = s })
 
     -- Create the textboxes for the tasks (<tt> == monospace)
-    local task1_tb = wibox.widget.textbox("<tt>Code 1: </tt>")
-    local task2_tb = wibox.widget.textbox("<tt>Task 2: </tt>")
-    local task3_tb = wibox.widget.textbox("<tt>Task 3: </tt>")
+    local task1_text = wibox.widget.textbox("<tt>Code 1: </tt>")
+    local task2_text = wibox.widget.textbox("<tt>Task 2: </tt>")
+    local task3_text = wibox.widget.textbox("<tt>Task 3: </tt>")
 
     -- Create two layouts at the top-left corner of the screen...
     local upper_left_layout_1 = wibox.layout.fixed.horizontal()
-    upper_left_layout_1:add(task1_tb)
+    upper_left_layout_1:add(task1_text)
     upper_left_layout_1:add(top_taglist_1[s])
 
     local upper_left_layout_2 = wibox.layout.fixed.horizontal()
-    upper_left_layout_2:add(task2_tb)
+    upper_left_layout_2:add(task2_text)
     upper_left_layout_2:add(top_taglist_2[s])
     upper_left_layout_2:add(top_taglist_2_r[s])
 
@@ -190,7 +190,7 @@ for s = 1, screen.count() do
 
     -- Lowbox widgets that are aligned to the left
     local lower_left_layout = wibox.layout.fixed.horizontal()
-    lower_left_layout:add(task3_tb)
+    lower_left_layout:add(task3_text)
     lower_left_layout:add(bottom_taglist[s])
     
     local right_layout_bot = wibox.layout.fixed.horizontal()
