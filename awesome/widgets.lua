@@ -17,10 +17,16 @@ for s = 1, screen.count() do
 end
 -- }}}
 
+-- Hides hardcoded tags for improved focus
+local focus_mode = true
+
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
     { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "toggle focus mode", function()
+        if focus_mode then focus_mode = false else focus_mode = true end
+    end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. "~/.config/awesome/rc.lua" },
     { "suspend", function() awful.util.spawn_with_shell("pm-suspend") end },
@@ -101,28 +107,26 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 -- Custom function for filtering tags
-function filter_wibox_id(t, args, wibox_id)
+function filter(t, wibox_id)
     for i = 1, #tags.names do
         if (tags.names[i] == t.name) then
             if (tags.wibox_id[i] == wibox_id) then
-                return true;
+                if not focus_mode or not (tags.names[i] == "5-fun" or tags.names[i] == "T") then
+                    return true
+                end
             end
             return false
         end
     end
     return false
 end
-function filter_wibox_bottom(t, args)
-    return filter_wibox_id(t, args, "bottom")
-end
-function filter_wibox_top_1(t, args)
-    return filter_wibox_id(t, args, "top_1")
-end
-function filter_wibox_top_2(t, args)
-    return filter_wibox_id(t, args, "top_2")
-end
-function filter_wibox_top_2_right(t, args)
-    return filter_wibox_id(t, args, "top_2_r")
+
+function filter_focus_mode(t)
+    for i = 1, #tags.names do
+        if (tags.names[i] == t.name) then
+        end
+    end
+    return false
 end
 
 -- Create widgets in all screens
@@ -138,11 +142,10 @@ for s = 1, screen.count() do
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create taglist widgets
-    top_taglist_1[s] = awful.widget.taglist(s, filter_wibox_top_1, taglist_buttons)
-    top_taglist_2[s] = awful.widget.taglist(s, filter_wibox_top_2, taglist_buttons)
-    top_taglist_2_r[s] = awful.widget.taglist(s, filter_wibox_top_2_right, taglist_buttons)
-    bottom_taglist[s] = awful.widget.taglist(s, filter_wibox_bottom, taglist_buttons)
-    --top_taglist_1[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    top_taglist_1[s] = awful.widget.taglist(s, function (t) return filter(t, "top_1") end, taglist_buttons)
+    top_taglist_2[s] = awful.widget.taglist(s, function (t) return filter(t, "top_2") end, taglist_buttons)
+    top_taglist_2_r[s] = awful.widget.taglist(s, function (t) return filter(t, "top_2_r") end, taglist_buttons)
+    bottom_taglist[s] = awful.widget.taglist(s, function (t) return filter(t, "bottom") end, taglist_buttons)
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
