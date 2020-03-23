@@ -1,3 +1,4 @@
+local gears = require("gears")
 local awful = require("awful")
 -- Theme handling library
 local beautiful = require("beautiful")
