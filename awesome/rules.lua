@@ -36,7 +36,7 @@ awful.rules.rules = {
 	-- Prevent some applications from doing stupid shit
 	{ rule = { class = "chromium" }, properties = {opacity = 1, maximized = false, floating = false} },
 	{ rule = { instance = "firefox" }, properties = {opacity = 1, maximized = false, floating = false} },
-	{ rule = { class = "Telegram" }, properties = {opacity = 1, maximized = false, floating = false} },
+	{ rule = { class = "Telegram" }, properties = {tag = "T", opacity = 1, maximized = false, floating = false} },
 	{ rule = { class = "urxvt" }, properties = {opacity = 1, maximized = false, floating = false} },
 	{ rule = { class = "alacritty" }, properties = {opacity = 1, maximized = false, floating = false} },
 }
