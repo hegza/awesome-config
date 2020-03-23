@@ -10,7 +10,7 @@ local lmax = awful.layout.suit.max
 local tags = {
     -- layouts in top-bar have to come first in indices (depends on hotkey-stuff)
     names = {
-        "1",        "2",        "3",     "4-www",    "5-www",
+        "1",        "2",        "3",     "4-www",    "5-fun",
         "Q",        "W",        "E",     "T",
         "A",        "S",        "D",     "G-stash" },
     layout = {

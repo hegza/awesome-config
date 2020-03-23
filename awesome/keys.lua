@@ -172,7 +172,7 @@ for s = 1, screen.count() do
     bind_default_keys("#" .. "3" + 9, s, tag_by_name["3"], tags.bg)
     -- Bind 4-www & 5-www
     bind_default_keys("#" .. "4" + 9, s, tag_by_name["4-www"], tags.bg)
-    bind_default_keys("#" .. "5" + 9, s, tag_by_name["5-www"], tags.bg)
+    bind_default_keys("#" .. "5" + 9, s, tag_by_name["5-fun"], tags.bg)
     -- Bind T
     bind_default_keys("t", s, tag_by_name["T"], tags.bg)
     -- Bind G-stash
