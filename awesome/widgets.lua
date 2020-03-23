@@ -18,7 +18,7 @@ end
 -- }}}
 
 -- Hides hardcoded tags for improved focus
-local focus_mode = true
+focus_mode = true
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
