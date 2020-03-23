@@ -2,7 +2,7 @@
 Description=Create ics from alpha_self.md when it changes, and upload it to to evo server.
 
 [Service]
-Type=simple
+Type=forking
 ExecStart=/home/hegza/local/bin/alpha-to-evo.sh
 
 [Install]
