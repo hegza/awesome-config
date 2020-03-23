@@ -10,23 +10,17 @@ local lmax = awful.layout.suit.max
 local tags = {
     -- layouts in top-bar have to come first in indices (depends on hotkey-stuff)
     names = {
-        "A",
-        "T",
-        "1",        "2",        "3",    "4-www",    "5-www",
-        "Q",        "W",        "E",
-                    "S",        "D",    "G-stash" },
+        "1",        "2",        "3",     "4-www",    "5-www",
+        "Q",        "W",        "E",     "T",
+        "A",        "S",        "D",     "G-stash" },
     layout = {
-        lmax,
-        tile,
-        tile,       lmax,       lmax,   lmax,       lmax,
-        tile,       lmax,       lmax,
-        lmax,       lmax,   lmax },
+        tile,       lmax,       lmax,    lmax,       lmax,
+        tile,       lmax,       lmax,    tile,
+        lmax,       lmax,       lmax,    lmax },
     wibox_id = {
-        "bottom",
-        "top_2_r",
-        "top_1",    "top_1",    "top_1", "top_1",   "top_1",
-        "top_2",    "top_2",    "top_2",
-        "bottom",   "bottom",   "bottom" },
+        "top_1",    "top_1",    "top_1", "top_1",    "top_1",
+        "top_2",    "top_2",    "top_2", "top_2_r",
+        "bottom",   "bottom",   "bottom","bottom" },
     bg = beautiful.wallpaper_space
 }
 
