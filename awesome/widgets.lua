@@ -19,7 +19,7 @@ end
 -- }}}
 
 -- Hides hardcoded tags for improved focus
-focus_mode = true
+focus_mode = false
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
