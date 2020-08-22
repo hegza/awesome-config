@@ -156,9 +156,9 @@ for s = 1, screen.count() do
     bottom_wibox[s] = awful.wibar({ position = "bottom", screen = s })
 
     -- Create the textboxes for the tasks (<tt> == monospace)
-    local task1_text = wibox.widget.textbox("<tt>Code 1: </tt>")
-    local task2_text = wibox.widget.textbox("<tt>Task 2: </tt>")
-    local task3_text = wibox.widget.textbox("<tt>Task 3: </tt>")
+    local task1_text = wibox.widget.textbox("<tt>Code: </tt>")
+    local task2_text = wibox.widget.textbox("<tt>Task: </tt>")
+    local task3_text = wibox.widget.textbox("<tt>Org: </tt>")
 
     -- Create two layouts at the top-left corner of the screen...
     local upper_left_layout_1 = wibox.layout.fixed.horizontal()
