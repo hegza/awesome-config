@@ -4,6 +4,11 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 local menubar = require("menubar")
 
+local hotkeys_popup = require("awful.hotkeys_popup")
+-- Enable hotkeys help widget for VIM and other apps
+-- when client with a matching name is opened:
+require("awful.hotkeys_popup.keys")
+
 local tags = require("tags")
 
 -- Create an identical tag table for every screen
@@ -15,6 +20,7 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
+    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. "~/.config/awesome/rc.lua" },
     { "suspend", function() awful.util.spawn_with_shell("pm-suspend") end },
