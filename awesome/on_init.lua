@@ -20,7 +20,6 @@ end
 
 -- {{{ Autostart (only for processes with a unique proc id)
 run_once("cbatticon")
-run_once("dropbox")
 run_once("nm-applet")
 awful.spawn.with_shell(terminal .. " -title evo -e zsh -c \"pgrep evo || evo\"")
 -- TODO: pgrep can't find the process => leads to duplicates (same for saskia-irc)
