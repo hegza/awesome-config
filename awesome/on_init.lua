@@ -21,7 +21,6 @@ end
 -- {{{ Autostart (only for processes with a unique proc id)
 run_once("cbatticon")
 run_once("nm-applet")
-awful.spawn.with_shell(terminal .. " -title evo -e zsh -c \"pgrep evo || evo\"")
 -- TODO: pgrep can't find the process => leads to duplicates (same for saskia-irc)
 --awful.spawn.with_shell("pgrep memo || " .. terminal .. " -title memo -e zsh -c \"vim -S /usr/local/etc/memo/calendar.session\"")
 -- }}}
